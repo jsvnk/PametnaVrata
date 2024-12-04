@@ -1,0 +1,6 @@
+@PametnaVrata_HostAddress = http://localhost:5211
+
+GET {{PametnaVrata_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

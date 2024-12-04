@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "VrataController",
+    "Method": "GetVrata",
+    "RelativePath": "api/Vrata",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "VrataController",
+    "Method": "PostVrata",
+    "RelativePath": "api/Vrata",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "vrata",
+        "Type": "Pametne_naprave",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
