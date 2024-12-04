@@ -1,4 +1,4 @@
-@PametnaVrata_HostAddress = http://localhost:5211
+@PametnaVrata_HostAddress = http://localhost:5031
 
 GET {{PametnaVrata_HostAddress}}/weatherforecast/
 Accept: application/json

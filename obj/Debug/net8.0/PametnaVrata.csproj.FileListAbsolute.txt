@@ -17,6 +17,7 @@ C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\PametnaVr
 C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\PametnaVrata.csproj.CoreCompileInputs.cache
 C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\PametnaVrata.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\PametnaVrata.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\PametnaVrata.sourcelink.json
 C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\scopedcss\bundle\PametnaVrata.styles.css
 C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\staticwebassets.build.json
 C:\Users\rifot\source\repos\PametnaVrata\PametnaVrata\obj\Debug\net8.0\staticwebassets.development.json
