@@ -1,23 +1,36 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Dodajte Swagger generator
+// Dodaj storitve za aplikacijo
 builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+// Dodaj podporo za Swagger
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pametna Vrata API", Version = "v1" });
+});
+
+// Konfiguriraj povezavo do podatkovne baze
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+// Zgradi aplikacijo
 var app = builder.Build();
 
-// Omogočite Swagger UI za vsa okolja
-app.UseSwagger();
-app.UseSwaggerUI();
+// Nastavitve za razvojno okolje
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pametna Vrata API v1"));
+}
 
-// Nastavite aplikacijo, da posluša na vseh naslovih (potrebno za Docker)
-app.Urls.Add("http://0.0.0.0:80");
-
-// Mapirajte kontrolerje
+// Omogoči zahtevke do API-ja
+app.UseHttpsRedirection();
+app.UseAuthorization();
 app.MapControllers();
 
+// Zaženi aplikacijo
 app.Run();

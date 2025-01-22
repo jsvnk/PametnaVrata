@@ -1,0 +1,26 @@
+# Build datoteke
+bin/
+obj/
+
+# Visual Studio datoteke
+.vs/
+
+# Ustvari datoteke za migracije
+Migrations/
+
+# Sistem datotek
+*.vsidx
+*.vscode/
+*.user
+*.lock
+*.log
+
+# Dokumentacija in začasne datoteke
+*~$*
+
+# Debug datoteke
+*.pdb
+*.cache
+*.tmp
+*.bak
+*.csproj.us

@@ -1,16 +1,66 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 public class Mobilna_Aplikacija
 {
-    public bool Povezava { get; set; }
+    [Key]
+    public int Id { get; set; }
+    public bool Povezava { get; set; } = false; // Privzeto aplikacija ni povezana
     public Uporabnik StanjeUporabnika { get; set; }
 
-    public void PosljiZahtevo(ref string ukaz)
+    /// <summary>
+    /// Pošlje zahtevo strežniku, če je aplikacija povezana.
+    /// </summary>
+    /// <param name="ukaz">Ukaz, ki ga želimo poslati.</param>
+    public void PosljiZahtevo(string ukaz)
     {
-        throw new NotImplementedException("Not implemented");
+        if (!Povezava)
+        {
+            Console.WriteLine("Napaka: Mobilna aplikacija ni povezana.");
+            return;
+        }
+
+        if (StanjeUporabnika == null)
+        {
+            Console.WriteLine("Napaka: Uporabnik ni prijavljen.");
+            return;
+        }
+
+        // Simulacija pošiljanja zahteve
+        Console.WriteLine($"Zahteva '{ukaz}' je bila poslana strežniku.");
     }
-    public void PrikaziObvestilo(ref string sporocilo)
+
+    /// <summary>
+    /// Prikazuje obvestilo uporabniku.
+    /// </summary>
+    /// <param name="sporocilo">Sporočilo za prikaz.</param>
+    public void PrikaziObvestilo(string sporocilo)
     {
-        throw new NotImplementedException("Not implemented");
+        if (string.IsNullOrWhiteSpace(sporocilo))
+        {
+            Console.WriteLine("Napaka: Obvestilo je prazno.");
+            return;
+        }
+
+        // Simulacija prikaza obvestila
+        Console.WriteLine($"Obvestilo uporabniku: {sporocilo}");
+    }
+
+    /// <summary>
+    /// Poveže mobilno aplikacijo z omrežjem.
+    /// </summary>
+    public void PoveziAplikacijo()
+    {
+        Povezava = true;
+        Console.WriteLine("Mobilna aplikacija je povezana.");
+    }
+
+    /// <summary>
+    /// Odklopi mobilno aplikacijo od omrežja.
+    /// </summary>
+    public void OdklopiAplikacijo()
+    {
+        Povezava = false;
+        Console.WriteLine("Mobilna aplikacija je odklopljena.");
     }
 }
