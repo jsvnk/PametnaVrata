@@ -1,56 +1,46 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Dodajte storitve v odvisnostni vbrizgovalnik
+// Konfiguracija povezave na MySQL bazo
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseMySql(
+        "Server=127.0.0.1;Port=3306;Database=pametna_vrata;User=root;Password=;",
+        new MySqlServerVersion(new Version(11, 4, 4))
+    )
+);
+
+// Dodajanje kontrolerjev in Swaggerja
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Dodajte kontekst podatkovne baze
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Omogočite dostop do statičnih datotek
-builder.Services.AddDirectoryBrowser();
-
-// Konfiguracija aplikacije
+// Gradnja aplikacije
 var app = builder.Build();
 
 // Omogočanje Swaggerja samo v razvojnem okolju
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(options =>
+    app.UseSwaggerUI(c =>
     {
-        options.RoutePrefix = "swagger";
-        options.SwaggerEndpoint($"/swagger/v1/swagger.json", "My API v1");
-        options.EnableDeepLinking();
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApiDemo v1");
+        c.RoutePrefix = "swagger";
     });
 }
 
-// Nastavite dostop do statičnih datotek
-app.UseStaticFiles();
-app.UseDirectoryBrowser(new DirectoryBrowserOptions
-{
-    FileProvider = app.Environment.ContentRootFileProvider,
-    RequestPath = "/wwwroot"
-});
+    // Omogočanje HTTPS preusmeritev in statičnih datotek
+    app.UseHttpsRedirection();
+app.UseStaticFiles(); // Omogoča dostop do statičnih datotek
 
-// Omogočite preusmeritev na HTTPS
-app.UseHttpsRedirection();
-
-// Omogočite usmerjanje zahtevkov
+// Omogočanje usmerjanja in avtorizacije
 app.UseRouting();
-
-// Omogočite avtorizacijo
 app.UseAuthorization();
 
-// Preslikajte končne točke krmilnikov
+// Preslikava kontrolerjev na končne točke
 app.MapControllers();
 
 // Zaženite aplikacijo
