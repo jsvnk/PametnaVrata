@@ -6,7 +6,7 @@ public class Streznik
 {
     [Key]
     public int Id { get; set; }
-    public string Naslov { get; set; }
+    public string Naslov { get; set; } = string.Empty; // Inicializacija
     public bool Status { get; set; }
 
     // Seznam uporabnikov za preverjanje (simulacija podatkov v bazi)

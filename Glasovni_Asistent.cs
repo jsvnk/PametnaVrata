@@ -6,9 +6,8 @@ public class Glasovni_Asistent
 {
     [Key]
     public int Id { get; set; }
-    public string Ukaz { get; set; }
+    public string Ukaz { get; set; } = string.Empty; // Inicializacija
     public bool Stanje { get; set; }
-
     // Seznam podprtih ukazov
     private static readonly List<string> PodprtiUkazi = new List<string>
     {

@@ -4,9 +4,9 @@ public class Uporabnik
 {
     [Key]
     public int Id { get; set; }
-    public string UporabniskoIme { get; set; }
-    public string Geslo { get; set; }
-    public string Vloga { get; set; }
+    public string UporabniskoIme { get; set; } = string.Empty; // Inicializacija
+    public string Geslo { get; set; } = string.Empty;
+    public string Vloga { get; set; } = string.Empty;
 
     // Statično skladišče za shranjevanje prijavljenih uporabnikov (za demonstracijo)
     private static HashSet<int> PrijavljeniUporabniki = new HashSet<int>();

@@ -1,16 +1,7 @@
-# Ignoriraj Visual Studio datoteke
-.vs/
-*.user
-*.suo
-
-# Ignoriraj build datoteke
-bin/
-obj/
-
-# Ignoriraj migracijske datoteke (po potrebi)
-Migrations/
-
-# Ignoriraj konfiguracijske datoteke in začasne datoteke
-*.log
-*.tmp
-*.db
+# Ignore Visual Studio-specific files 
+.vs/ 
+bin/ 
+obj/ 
+*.user 
+*.suo 
+Migrations/ 

@@ -5,7 +5,7 @@ public class Pametne_naprave
 {
     [Key]
     public int Id { get; set; }
-    public string Tip { get; set; }
+    public string Tip { get; set; } = string.Empty; // Inicializacija
     public bool Stanje { get; set; }
     public double PorabaEnergije { get; set; }
 

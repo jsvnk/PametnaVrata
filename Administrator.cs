@@ -5,8 +5,8 @@ public class Administrator
 {
     [Key]
     public int Id { get; set; }
-    public string Ime { get; set; }
-    public string Email { get; set; }
+    public string Ime { get; set; } = string.Empty; // Inicializacija
+    public string Email { get; set; } = string.Empty;
 
     // Relacija z napravami
     public List<Pametne_naprave> Naprave { get; set; } = new List<Pametne_naprave>();

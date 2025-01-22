@@ -5,8 +5,8 @@ public class Mobilna_Aplikacija
 {
     [Key]
     public int Id { get; set; }
-    public bool Povezava { get; set; } = false; // Privzeto aplikacija ni povezana
-    public Uporabnik StanjeUporabnika { get; set; }
+    public bool Povezava { get; set; }
+    public Uporabnik StanjeUporabnika { get; set; } = new(); // Inicializacija
 
     /// <summary>
     /// Pošlje zahtevo strežniku, če je aplikacija povezana.
