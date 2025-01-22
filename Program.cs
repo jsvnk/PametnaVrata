@@ -27,9 +27,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pametna Vrata API v1"));
 }
 
-// Omogoči zahtevke do API-ja
+// Omogoči HTTPS preusmeritve
 app.UseHttpsRedirection();
+
+// Omogoči preverjanje pooblastil
 app.UseAuthorization();
+
+// Poveži kontrolerje z API-jem
 app.MapControllers();
 
 // Zaženi aplikacijo
