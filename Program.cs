@@ -1,40 +1,45 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Dodaj storitve za aplikacijo
+// Dodajte storitve v odvisnostni vbrizgovalnik
 builder.Services.AddControllers();
-
-// Dodaj podporo za Swagger
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Pametna Vrata API", Version = "v1" });
-});
+builder.Services.AddSwaggerGen();
 
-// Konfiguriraj povezavo do podatkovne baze
+// Dodajte kontekst podatkovne baze
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Zgradi aplikacijo
+// Konfiguracija aplikacije
 var app = builder.Build();
 
-// Nastavitve za razvojno okolje
+// Omogočanje Swaggerja samo v razvojnem okolju
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Pametna Vrata API v1"));
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Pametna Vrata API v1");
+        options.RoutePrefix = string.Empty; // Nastavi Swagger kot začetno stran
+    });
 }
 
-// Omogoči HTTPS preusmeritve
+// Omogočite preusmeritev na HTTPS
 app.UseHttpsRedirection();
 
-// Omogoči preverjanje pooblastil
+// Omogočite usmerjanje zahtevkov
+app.UseRouting();
+
+// Omogočite avtorizacijo
 app.UseAuthorization();
 
-// Poveži kontrolerje z API-jem
+// Preslikajte končne točke krmilnikov
 app.MapControllers();
 
-// Zaženi aplikacijo
+// Zaženite aplikacijo
 app.Run();
