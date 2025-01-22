@@ -10,13 +10,14 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Omogočite Swagger UI
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Omogočite Swagger UI za vsa okolja
+app.UseSwagger();
+app.UseSwaggerUI();
 
+// Nastavite aplikacijo, da posluša na vseh naslovih (potrebno za Docker)
+app.Urls.Add("http://0.0.0.0:80");
+
+// Mapirajte kontrolerje
 app.MapControllers();
 
 app.Run();

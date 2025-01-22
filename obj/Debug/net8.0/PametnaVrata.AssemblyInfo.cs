@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PametnaVrata")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+999dce033850670af3cee07b3b9c2f56fcb165cd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7b976860e07187887aaf69fe1c55e989a5c6c23")]
 [assembly: System.Reflection.AssemblyProductAttribute("PametnaVrata")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PametnaVrata")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
