@@ -1,26 +1,17 @@
-# Build datoteke
-bin/
-obj/
-
 # Visual Studio datoteke
 .vs/
 
-# Ustvari datoteke za migracije
+# Build in obj datoteke
+bin/
+obj/
+
+# Migracije
 Migrations/
 
-# Sistem datotek
-*.vsidx
-*.vscode/
-*.user
-*.lock
-*.log
+# Visual Studio User datoteka
+PametnaVrata.csproj.user
 
-# Dokumentacija in začasne datoteke
-*~$*
-
-# Debug datoteke
-*.pdb
-*.cache
+# Temp datoteke
 *.tmp
-*.bak
-*.csproj.us
+*.log
+*.docx~
