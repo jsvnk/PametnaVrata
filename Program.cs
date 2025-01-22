@@ -15,22 +15,31 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// Omogočite dostop do statičnih datotek
+builder.Services.AddDirectoryBrowser();
+
 // Konfiguracija aplikacije
 var app = builder.Build();
 
 // Omogočanje Swaggerja samo v razvojnem okolju
 if (app.Environment.IsDevelopment())
 {
-    
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
         options.RoutePrefix = "swagger";
-        options.SwaggerEndpoint($"/swagger/v1/swagger.json", "My API");
+        options.SwaggerEndpoint($"/swagger/v1/swagger.json", "My API v1");
         options.EnableDeepLinking();
     });
-    app.UseStaticFiles();
 }
+
+// Nastavite dostop do statičnih datotek
+app.UseStaticFiles();
+app.UseDirectoryBrowser(new DirectoryBrowserOptions
+{
+    FileProvider = app.Environment.ContentRootFileProvider,
+    RequestPath = "/wwwroot"
+});
 
 // Omogočite preusmeritev na HTTPS
 app.UseHttpsRedirection();
