@@ -21,12 +21,15 @@ var app = builder.Build();
 // Omogočanje Swaggerja samo v razvojnem okolju
 if (app.Environment.IsDevelopment())
 {
+    
     app.UseSwagger();
     app.UseSwaggerUI(options =>
     {
-        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Pametna Vrata API v1");
-        options.RoutePrefix = string.Empty; // Nastavi Swagger kot začetno stran
+        options.RoutePrefix = "swagger";
+        options.SwaggerEndpoint($"/swagger/v1/swagger.json", "My API");
+        options.EnableDeepLinking();
     });
+    app.UseStaticFiles();
 }
 
 // Omogočite preusmeritev na HTTPS
