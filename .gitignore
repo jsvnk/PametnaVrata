@@ -1,17 +1,16 @@
-# Visual Studio datoteke
+# Ignoriraj Visual Studio datoteke
 .vs/
+*.user
+*.suo
 
-# Build in obj datoteke
+# Ignoriraj build datoteke
 bin/
 obj/
 
-# Migracije
+# Ignoriraj migracijske datoteke (po potrebi)
 Migrations/
 
-# Visual Studio User datoteka
-PametnaVrata.csproj.user
-
-# Temp datoteke
-*.tmp
+# Ignoriraj konfiguracijske datoteke in začasne datoteke
 *.log
-*.docx~
+*.tmp
+*.db
